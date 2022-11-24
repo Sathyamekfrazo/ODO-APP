@@ -1,0 +1,113 @@
+ion-item {
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    // margin-bottom: 10px !important;
+  }
+  .style-of-text-area{
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    margin: 10px 10px 9px 10px !important;
+  }
+  ion-button.button.button-solid.ion-activatable.ion-focusable.hydrated {
+    // width: 150px;
+    height: 40px;
+    /* margin-top: 6px !important; */
+    margin-bottom: 25px !important;
+    margin: 0 auto;
+    --background: #630207 !important;
+    display: block;
+    text-transform: inherit;
+    margin: 10px 20px 0px 20px;
+  }
+  button{
+    width: 50px;
+    /* padding: 13px; */
+    height: 40px;
+    margin: 0 auto;
+    // --background: white !important;
+    border-radius: 11px;
+    display: block;
+    text-transform: inherit;
+    margin: 0px 20px 0px 20px;
+  
+  }
+  .ion-text-center {
+    font-size: 12px !important;
+    .header-row {
+      .headingName {
+        font-size: 16px;
+        font-weight: bold;
+        color: #141414;
+      }
+    }
+    .red {
+      font-size: 12px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 3px 13px;
+    }
+    .blue {
+      color: #0277bd;
+    }
+  }
+  ion-item {
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    margin: 20px 15px !important;
+  }
+  .containBlock {
+    margin: 10px 0px 0px 8px;
+    background-color: white;
+    /* border: 23px; */
+    border-radius: 6px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .containBlock:hover{
+    /* border: 23px; */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(174, 236, 231, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .other {
+    font-size: 12x;
+    border: 1px solid #0277bd;
+    border-radius: 20px;
+    padding: 3px 24px;
+  
+    position: relative;
+    top: 13px;
+    left: 10px;
+  }
+  // ion-input {
+  //   border-bottom: 1px solid;
+  // }
+  .trashIcon {
+    color: #630207;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .icon-upload{
+    font-size: 10px;
+  }
+  .ion-text-center{
+    background-color: #f2f2f2;
+  }
+  ion-text{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  ion-title{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .skip-option{
+    display: flex;
+    justify-content: right;
+  }
+  .header-aligns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px 0 10px;
+  }
+  

@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <div class="header-aligns">
+      <ion-title>View Documents</ion-title>
+      <span><a style="color: white;
+        font-weight: 600;
+        text-decoration: none;" routerLink="/home">Skip</a></span>
+    </div>
+   
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="vehicleDocuments" *ngIf="rescame">
+    <!-- <h5 class="card-title">Vehicle Documents</h5> -->
+    <div class="card" *ngFor="let vehicles of fulldata;let i=index">
+      <img
+      [src]="vehicles.image_path"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{vehicles.doc_name}}</h5>
+        <p class="card-text">{{vehicles.valid_upto}}</p>
+        <!-- <a class="btn btn-primary">Preview</a> -->
+      </div>
+    </div>
+  
+    <!-- <ion-button
+      expand="block"
+      (click)="slideToViewDocs()"
+      style="margin-top: 30px; padding: 0px 10px 0 10px"
+      *ngIf="rescame"
+    >
+      Next
+    </ion-button> -->
+  </div>
+</ion-content>

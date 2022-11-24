@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-segment mod="mod" [(ngModel)]='segment' (ionChange)="segmentChanged()" (click)="segementtoNXT()">
+      <ion-segment-button value="0" *ngIf="default">
+        <div class="head-content">
+          <ion-avatar>
+            <img src="../../assets/images/odo1.png">
+          </ion-avatar>
+          <ion-title>heading</ion-title>
+        </div>
+
+      </ion-segment-button>
+      <ion-segment-button value="1" *ngIf="first">
+        <ion-icon name="phone potrait">
+          Mobile
+        </ion-icon>
+        <ion-title>heading1</ion-title>
+      </ion-segment-button>
+      <ion-segment-button value="2" *ngIf="second">
+        <ion-icon name="phone potrait">
+          Mobile
+        </ion-icon>
+        <ion-title>heading2</ion-title>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-slides #slides pager="false" [options]="sliderOptions" (ionSlideDidChange)="slidesChanged(slides)" (ionSlidesDidLoad)="slidesChanged(slides)">
+  <ion-slide>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Add Vehicle</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Here's a small text description for the card content. Nothing more, nothing less.
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+  <ion-slide>
+    
+  </ion-slide>
+  <ion-slide>3</ion-slide>
+
+</ion-slides>
+</ion-content>

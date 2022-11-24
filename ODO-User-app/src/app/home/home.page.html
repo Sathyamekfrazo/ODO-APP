@@ -1,0 +1,182 @@
+<!-- <ion-header [translucent]="true" style="position: initial !important;">
+  <ion-toolbar style="    height: 80px;
+  padding: 10px;
+  --background: #900505;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+">
+    <ion-buttons slot="start">
+      <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="logo" class="logoImages">
+    </ion-buttons>
+    <img src="../../assets/images/odo.png" alt="logo" class="mainLogoImages">
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" color="light" name="notifications-outline" style="font-weight:bold;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header [translucent]="true" style="background-color: green;">
+  <ion-toolbar color="primary" class="tool-color">
+    <ion-buttons slot="start">
+
+
+      <ion-menu-button autoHide="false"></ion-menu-button>
+
+    </ion-buttons>
+
+    <ion-title>
+      Dashboard
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" color="light" name="notifications-outline" style="font-weight:bold;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+    <div class="spin" *ngIf="spinner" style="  position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);">
+      <ion-spinner name="bubbles" style="  width: 28px;
+      height: 28px;
+      stroke: #444;
+      fill: #222;"></ion-spinner>
+    </div>
+  <div class="ion-text-center">
+    <div class="containBlock" *ngFor="let vechile of isNewvechileList;let i = index">
+      <div lines="none" class="carImageBlock">
+        <img alt="Silhouette of a person's head" [src]="vechile.vehicle_image_path" class="carImages" />
+        <span class="carName">{{vechile.vehicle_number}}</span>
+        <span class="carName">{{vechile.vehicle_name}}</span>
+        <span class="carName" (click)="togglePropVisible(i)">
+          <ion-icon name="caret-down-outline" style="font-size: 27px; color:brown;padding-top: 16px;"></ion-icon>
+        </span>
+      </div>
+      <div class="container-block" *ngIf="vehiclePropVisible[i]">
+        <div class="headings">
+          <ion-row>
+            <ion-col id="insurance" (click)="gotoPreview($event)">
+              <ion-text class="yellow">
+                Insurance
+              </ion-text>
+            </ion-col>
+            <ion-col id="Emission" (click)="gotoPreview($event)">
+              <ion-text class="yellow">
+                Emission
+              </ion-text>
+            </ion-col>
+            <ion-col id="Fitness" (click)="gotoPreview($event)">
+              <ion-text class="yellow">
+                Fitness
+              </ion-text>
+            </ion-col>
+          </ion-row>
+        </div>
+        <!-- <div class="main-block">
+          <ion-col class="col-adjusment" style="    display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;">
+            <ion-row>
+              <ion-text class="red">
+                Due Days
+              </ion-text>
+            </ion-row>
+            <ion-row *ngFor="let insurance of insuranceData;let i=index">
+              <ion-text class="yellow">
+                {{insurance.insurance_due_days}}
+              </ion-text>
+            </ion-row>
+
+          </ion-col>
+          <ion-col style="    display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;">
+            <ion-row>
+              <ion-text class="red">
+                Due Days
+              </ion-text>
+            </ion-row>
+            <ion-row *ngFor="let emission of emissionData;let i=index">
+              <ion-text class="yellow" >
+                {{emission.emission_due_days}}
+              </ion-text>
+            </ion-row>
+          </ion-col>
+          <ion-col style="    display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;">
+            <ion-row>
+              <ion-text class="red">
+                Due Days
+              </ion-text>
+            </ion-row>
+            <ion-row *ngFor="let permit of fitnessData">
+              <ion-text class="yellow">
+                {{permit.permit_due_days}}
+              </ion-text>
+            </ion-row>
+
+          </ion-col>
+        </div> -->
+
+        <!-- <ion-col class="header-row" >
+        <ion-row>
+          <ion-text class="headingName">Insurance</ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="headingName">Emission</ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="headingName">Fitness</ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-col class="dueDaystxt">
+        <ion-row>
+          <ion-text class="red">
+            Due Days
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="yellow">
+            Due Days
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="yellow">
+            Due Days
+          </ion-text>
+        </ion-row>
+      </ion-col>
+      <ion-col class="duedayscount">
+        <ion-row>
+          <ion-text class="red">
+            Due Days
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="yellow">
+            Due Days
+          </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-text class="yellow">
+            Due Days
+          </ion-text>
+        </ion-row>
+      </ion-col> -->
+        <!-- <div class="container-block">
+
+</div> -->
+      </div>
+
+
+    </div>
+  </div>
+  
+</ion-content>

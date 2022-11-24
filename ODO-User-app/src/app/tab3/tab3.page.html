@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <div class="header-aligns">
+      <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+      <span>Add Document</span>
+      <span
+        ><a
+          routerLink="/tabs/tab4"
+          style="color: white; font-weight: 600; text-decoration: none"
+          >Skip</a
+        ></span
+      >
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Add Document</ion-card-title>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-select placeholder="Select Doc" >
+              <ion-select-option value="isnu">Adhar</ion-select-option>
+              <ion-select-option value="adhar">Pan</ion-select-option>
+              <ion-select-option value="pan">insurance</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-text class="red"> -->
+          <!-- upload <ion-icon name="share-outline"></ion-icon> -->
+          <ion-item>
+            <label
+              for="imageUpload"
+              class="btn btn-primary btn-block btn-outlined"
+              >upload</label
+            >
+            <input
+              type="file"
+              id="imageUpload"
+              accept="image/*"
+              hidden
+              (change)="imageChange($event)"
+            />
+            <ion-icon name="share-outline"></ion-icon>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Full Name</ion-label>
+            <ion-input placeholder="Enter text" [(ngModel)]="doc_name" (change)="imageChange($event)"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Valid Upto</ion-label>
+            <ion-input
+              type="date"
+              placeholder="Select Date"
+              (change)="imageChange($event)"
+            >
+            </ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="style-of-text-area">
+          <ion-item>
+          <!-- <ion-label position="floating">Valid Upto</ion-label> -->
+          <ion-textarea placeholder="category of vehicle allowed to ride 14" [(ngModel)]="other_remarks" [autoGrow]="true" maxlength="300">
+          </ion-textarea>
+
+          </ion-item>
+
+        </ion-col>
+    </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <!-- <button (click)="addNewVehicleButton()">save</button> -->
+  <!-- <app-explore-container name="Tab 3 page"></app-explore-container> -->
+</ion-content>

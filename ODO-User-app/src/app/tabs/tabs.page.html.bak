@@ -1,0 +1,36 @@
+<ion-tabs
+  #tabs
+  appGesture
+  [gestureOpts]="[{name: 'swipe'}]"
+  (swipe)="onSwipe($event)" (click)="onSwipe($event)">
+
+  <ion-tab-bar slot="bottom" style="background-color: #630207;">
+    <div class="tab1"  *ngIf="tab1">
+      <ion-button (click)="gotoTabtwo($event)">next</ion-button>
+    </div>
+    <div class="tab2" *ngIf="tab2">
+      <ion-button (click)="gotoTabtwo($event)">next1</ion-button>
+    </div>
+    <div class="tab3" *ngIf="tab3">
+      <ion-button (click)="gotoTabtwo($event)">next2</ion-button>
+    </div>
+    <div class="tab4" *ngIf="tab4">
+      <ion-button (click)="gotoTabtwo($event)">Continue</ion-button>
+    </div>
+    <!-- <ion-tab-button tab="tab1" *ngIf="tab1" >
+      <ion-button (click)="gotoTabtwo()">click here</ion-button>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2" *ngIf="tab2">
+      <ion-label>Next</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3" *ngIf="tab3">
+      <ion-label>Next</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tab4" *ngIf="tab4">
+      <ion-label>Next</ion-label>
+    </ion-tab-button> -->
+  </ion-tab-bar>
+
+</ion-tabs>

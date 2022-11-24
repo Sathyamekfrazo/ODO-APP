@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>View Vechile Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-text-center">
+    <ion-row class="header-row">
+      <ion-col>
+        <ion-text class="headingName">Insurance</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="headingName">Valid Upto</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="headingName">Due In</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text class="red">
+       
+      upload <ion-icon name="share-outline"></ion-icon> 
+          
+
+          
+        </ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="yellow">
+          dd-mm-yyyy
+        </ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="blue">
+          3 Days
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-item lines="none">
+      <ion-textarea placeholder="Type something here" [autoGrow]="true">
+      </ion-textarea>
+    </ion-item>
+    <div class="containBlock">
+      <ion-row class="header-row">
+        <ion-col>
+          <ion-text class="headingName">RC</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Valid Upto</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Due In</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="red">
+            upload <ion-icon name="share-outline"></ion-icon>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="yellow">
+            dd-mm-yyyy
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="blue">
+            3 Days
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="containBlock">
+      <ion-row class="header-row">
+        <ion-col>
+          <ion-text class="headingName">Permit</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Valid Upto</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Due In</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="red">
+            upload <ion-icon name="share-outline"></ion-icon>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="yellow">
+            dd-mm-yyyy
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="blue">
+            3 Days
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div class="containBlock">
+      <ion-row class="header-row">
+        <ion-col>
+          <ion-text class="headingName">Emission</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Valid Upto</ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="headingName">Due In</ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-text class="red">
+            upload <ion-icon name="share-outline"></ion-icon>
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="yellow">
+            dd-mm-yyyy
+          </ion-text>
+        </ion-col>
+        <ion-col>
+          <ion-text class="blue">
+            3 Days
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+  <!-- <h2>{{ name }}</h2> -->
+  <div *ngFor="let value of values; let i = index">
+    <!-- <input type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}"> -->
+    <ion-row class="header-row">
+      <ion-col>
+        <ion-text class="headingName">Other (Tap to Enter)</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="headingName">Valid Upto</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text class="other">
+          upload <ion-icon name="share-outline"></ion-icon>
+        </ion-text>
+      </ion-col>
+      <ion-col>
+
+        <ion-input type="text" [(ngModel)]="value.value" placeholder="dd-mm-yyyy"></ion-input>
+
+      </ion-col>
+
+
+      <ion-icon name="trash" class="trashIcon" (click)="removevalue(i)">Remove</ion-icon>
+
+
+    </ion-row>
+
+  </div>
+  <ion-button (click)="addvalue()" style="float: right;">
+    <ion-icon name="add"></ion-icon>
+  </ion-button>
+</ion-content>

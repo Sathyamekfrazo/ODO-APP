@@ -1,0 +1,81 @@
+<!-- <div class="content">
+  <div class="o-c">
+    <div>
+      <div class="card">
+        <p class="a-o-i">Enter verification code</p>
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config"></ng-otp-input>
+        <span *ngIf="otp" class="o-t-p">Entered otp :-{{otp}}</span>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- <ion-content>
+
+  <div class="redBlock">
+    <div class="otpScreen">
+      <form>
+        <p class="labelName"> Please enter your OTP to verify</p>
+        <ion-row text-center class="owr-input" style="display: flex;
+        justify-content: center;" >
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp1 ngModel name="otp1" required maxLength="1" [(ngModel)]="password1" class="adjust-pading" value="">
+            </ion-input>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp2 ngModel name="otp2" required maxLength="1" [(ngModel)]="password2">
+            </ion-input>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp3 ngModel name="otp3" required maxLength="1" [(ngModel)]="password3">
+            </ion-input>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp4 ngModel name="otp4" required maxLength="1" [(ngModel)]="password4">
+            </ion-input>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp5 ngModel name="otp5" required maxLength="1" [(ngModel)]="password5">
+            </ion-input>
+          </ion-col>
+          <ion-col size="1" class="ion-text-center1">
+            <ion-input #otp6 ngModel name="otp6" required maxLength="1" [(ngModel)]="password6">
+            </ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-button type="submit" (click)="navtoHome()"> Verify OTP </ion-button>
+      </form>
+
+    </div>
+  </div>
+
+
+</ion-content> -->
+<ion-content class="ion-padding">
+  <div class="redBlock">
+    <div class="otpScreen">
+      <p class="labelName"> Please enter your OTP to verify</p>
+      <ion-row >
+        <ion-col style="display: flex;align-items: center;">
+         <ion-input class="x" #otp1 required="true" maxLength="1" [(ngModel)]="OTP.first" (keyup)="otpController($event,otp2,'')">
+         </ion-input>
+         <ion-input class="x" #otp2 required="true" maxLength="1" [(ngModel)]="OTP.second" (keyup)="otpController($event,otp3,otp1)">
+         </ion-input>
+         <ion-input class="x" #otp3 required="true" maxLength="1" [(ngModel)]="OTP.third"  (keyup)="otpController($event,otp4,otp2)">
+         </ion-input>
+         <ion-input class="x" #otp4 required="true" maxLength="1" [(ngModel)]="OTP.forth"  (keyup)="otpController($event,otp5,otp3)">
+        </ion-input>
+      
+        <!-- <ion-input class="x" #otp5  required="true" maxLength="1" [(ngModel)]="OTP.fifth" (keyup)="otpController($event,otp6,otp4)">
+        </ion-input>
+      
+        <ion-input class="x" #otp6  required="true" maxLength="1" [(ngModel)]="OTP.sixth" (keyup)="otpController($event,'',otp5)">
+        </ion-input> -->
+      
+        </ion-col>
+      </ion-row>
+      <ion-button type="submit" (click)="navtoHome()"> Verify OTP </ion-button>
+    </div>
+  </div>
+
+</ion-content>

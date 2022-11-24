@@ -1,0 +1,355 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+    </ion-buttons>
+    <div class="header-aligns">
+      <ion-title>Add Vechile</ion-title>
+      <span><a style="color: white;
+        font-weight: 600;
+        text-decoration: none;" routerLink="/tabs/tab2">Skip</a></span>
+    </div>
+   
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  
+  <ion-card class="ion-padding">
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Add Vechile Number</ion-label> -->
+      <!-- <ion-input type="number" placeholder="Add Vechile Number"> </ion-input> -->
+      <span><ion-input maxlength="14" [(ngModel)]="vehicle_number" name="vehicle_number" (change)="prePayload($event)" placeholder="Enter Vechile Number" (keypress)="validateNo($event)" (change)="prePayload($event)"></ion-input></span>
+      
+      
+    </ion-item>
+    <span *ngIf="vehcleNovali" class="error-msg">special chracters not allowed</span>  
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Add Vechile Number</ion-label> -->
+      <!-- <ion-input type="number" placeholder="Add Vechile Number"> </ion-input> -->
+      <ion-input maxlength="14" [(ngModel)]="vehicle_name" name="vehicle_name" (change)="prePayload($event)" placeholder="Enter Vehicle Name" (keypress)="vehicleName($event)">
+      </ion-input>
+
+    </ion-item>
+    <span *ngIf="vehcleName" class="error-msg">Numbers Not allowed</span>  
+
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Add Vechile Number</ion-label> -->
+      <!-- <ion-input type="number" placeholder="Add Vechile Number"> </ion-input> -->
+      <ion-input maxlength="14" [(ngModel)]="refrence_name" name="refrence_name" (change)="prePayload($event)" (keypress)="vehicleNameref($event)" placeholder="Enter reference Name">
+      </ion-input>
+
+    </ion-item>
+    <span *ngIf="vehcleReference" class="error-msg">special chracters not allowed</span>  
+
+    <!-- <ion-item  lines="none">
+       <ion-label position="floating">Enter your mobile number</ion-label> 
+      <ion-input maxlength="14"  placeholder="Add Vechile Number"></ion-input>
+      
+      
+    </ion-item> -->
+
+    <!-- <ion-item lines="none"> -->
+    <!-- <ion-label position="floating">Vachile Category</ion-label> -->
+    <!-- <ion-select placeholder="Select Gender" style="width: 100%;">
+        <ion-select-option value="f">Female</ion-select-option>
+        <ion-select-option value="m">Male</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+    <ion-item lines="none">
+      <!-- <ion-label position="floating">Vachile Category</ion-label> -->
+      <ion-select placeholder="Select Category" style="width: 100%;" (ionChange)="handleChange($event)">
+        <ion-select-option *ngFor="let wheeler of vechileList;let i = index" [value]="wheeler.id">
+          {{wheeler.category_name}}
+        </ion-select-option>
+        <!-- <ion-select-option value="b">2 wheeler</ion-select-option>
+        <ion-select-option value="c">3 wheeler</ion-select-option> -->
+
+      </ion-select>
+    </ion-item>
+    <!-- <span *ngIf="vehcleNovali" class="error-msg">special chracters not allowed</span>   -->
+
+  </ion-card>
+  <!-- <ion-card> -->
+  <!-- <ion-content> -->
+
+    <div class="grid-documents">
+      <ion-grid class="ion-text-center">
+
+        <div class="containBlock">
+        <ion-row class="header-row">
+          <ion-col>
+            <ion-text class="headingName">Insurance</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text class="headingName">Valid Upto</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text class="headingName">Remarks</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row style="    display: flex;
+        align-items: center;">
+          <ion-col>
+            <ion-text class="red">
+              <!-- upload <ion-icon name="share-outline"></ion-icon> -->
+    
+              <label for="imageUpload" class="btn btn-primary btn-block btn-outlined">upload</label>
+              <input type="file" id="imageUpload" accept="image/*" hidden (change)="imageChange($event)">
+              <ion-icon name="share-outline"></ion-icon>
+            </ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-text class="yellow">
+              <ion-input type="date" placeholder="Select Date" [(ngModel)]="insurance_date" (change)="prePayload($event)"> </ion-input>
+            </ion-text>
+          </ion-col>
+          <ion-col>
+            <button (click)="AddtextBox()" style="float: right">
+              <!-- <ion-icon name="add"></ion-icon> -->
+              {{viewmore?"+":"-"}}
+            </button>
+    
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="viewless">
+          <ion-col class="style-of-text-area">
+            <ion-textarea placeholder="Type something here" [(ngModel)]="insurance_remarks" [autoGrow]="true" maxlength="300" (change)="prePayload($event)">
+            </ion-textarea>
+          </ion-col>
+    
+    
+      </ion-row>
+      </div>
+        <div class="containBlock">
+          <ion-row class="header-row">
+            <ion-col>
+              <ion-text class="headingName">RC</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Valid Upto</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Remarks</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row style="    display: flex;
+          align-items: center;">
+            <ion-col>
+              <ion-text class="red">
+                <label for="rcimageUpload" class="btn btn-primary btn-block btn-outlined">upload</label>
+                <input (change)="prePayload($event)" type="file" id="rcimageUpload" accept="image/*" hidden (change)="rcImageChange($event)">
+                <ion-icon name="share-outline"></ion-icon>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="yellow">
+                <ion-input (change)="prePayload($event)" type="date" placeholder="Select Date" [(ngModel)]="rc_date"> </ion-input>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <button (click)="AddtextBox1()" style="float: right;">
+                <!-- <ion-icon name="add"></ion-icon> -->
+                {{viewmore1?"+":"-"}}
+              </button>
+    
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="viewless1">
+              <ion-col class="style-of-text-area">
+                <ion-textarea  (change)="prePayload($event)" placeholder="Type something here" [(ngModel)]="rc_remarks" [autoGrow]="true" maxlength="300">
+                </ion-textarea>
+              </ion-col>
+    
+    
+          </ion-row>
+    
+        </div>
+        <div class="containBlock">
+          <ion-row class="header-row">
+            <ion-col>
+              <ion-text class="headingName">Permit</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Valid Upto</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Remarks</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row style="    display: flex;
+          align-items: center;">
+            <ion-col>
+              <ion-text class="red">
+                <label for="permitimageUpload" class="btn btn-primary btn-block btn-outlined">upload</label>
+                <input  (change)="prePayload($event)" type="file" id="permitimageUpload" accept="image/*" hidden (change)="permitImageChange($event)">
+                <ion-icon name="share-outline"></ion-icon>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="yellow">
+                <ion-input  (change)="prePayload($event)" type="date" placeholder="Select Date" [(ngModel)]="permit_date"> </ion-input>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <button (click)="AddtextBox2()" style="float: right;">
+                <!-- <ion-icon name="add"></ion-icon> -->
+                {{viewmore2?"+":"-"}}
+              </button>
+    
+            </ion-col>
+          </ion-row>
+          <!-- <ion-item lines="none" *ngIf="viewless2">
+            <ion-textarea placeholder="Type something here" [(ngModel)]="permit_remarks" [autoGrow]="true" maxlength="300">
+            </ion-textarea>
+          </ion-item> -->
+          <ion-row *ngIf="viewless2">
+            <ion-col class="style-of-text-area">
+              <ion-textarea (change)="prePayload($event)" placeholder="Type something here" [(ngModel)]="permit_remarks" [autoGrow]="true" maxlength="300">
+              </ion-textarea>
+            </ion-col>
+    
+    
+        </ion-row>
+          
+        </div>
+        <div class="containBlock">
+          <ion-row class="header-row">
+            <ion-col>
+              <ion-text class="headingName">Emission</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Valid Upto</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Remarks</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row style="    display: flex;
+          align-items: center;">
+            <ion-col>
+              <ion-text class="red">
+                <label for="emissionimageUpload" class="btn btn-primary btn-block btn-outlined">upload</label>
+                <input  (change)="prePayload($event)" type="file" id="emissionimageUpload" accept="image/*" hidden (change)="emissionImageChange($event)">
+                <ion-icon name="share-outline"></ion-icon>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="yellow">
+                <ion-input  (change)="prePayload($event)" type="date" placeholder="Select Date" [(ngModel)]="emission_date"> </ion-input>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <button (click)="AddtextBox3()" style="float: right;">
+                <!-- <ion-icon name="add"></ion-icon> -->
+                {{viewmore3?"+":"-"}}
+              </button>
+    
+            </ion-col>
+          </ion-row>
+          <!-- <ion-item lines="none" *ngIf="viewless3">
+            <ion-textarea placeholder="Type something here" [(ngModel)]="emission_remarks" [autoGrow]="true"
+              maxlength="300">
+            </ion-textarea>
+          </ion-item> -->
+          <ion-row *ngIf="viewless3">
+            <ion-col class="style-of-text-area">
+              <ion-textarea  (change)="prePayload($event)" placeholder="Type something here" [(ngModel)]="emission_remarks" [autoGrow]="true" maxlength="300">
+              </ion-textarea>
+            </ion-col>
+    
+    
+        </ion-row>
+        </div>
+        <div class="containBlock">
+          <ion-row class="header-row">
+            <ion-col>
+              <!-- <ion-text class="headingName">Other</ion-text> -->
+              <ion-input  (change)="prePayload($event)" type="text" placeholder="other" class="headingName"></ion-input>
+    
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Valid Upto</ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="headingName">Remarks</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row style="    display: flex;
+          align-items: center;">
+            <ion-col>
+              <ion-text class="red">
+                <label for="otherimageUpload" class="btn btn-primary btn-block btn-outlined">upload</label>
+                <input  (change)="prePayload($event)" type="file" id="otherimageUpload" accept="image/*" hidden (change)="otherImageChange($event)">
+                <ion-icon name="share-outline"></ion-icon>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text class="yellow">
+                <ion-input type="date" placeholder="Select Date" [(ngModel)]="other_date"> </ion-input>
+              </ion-text>
+            </ion-col>
+            <ion-col>
+              <button (click)="AddtextBox4()" style="float: right;">
+                <!-- <ion-icon name="add"></ion-icon> -->
+                {{viewmore4?"+":"-"}}
+              </button>
+    
+            </ion-col>
+          </ion-row>
+          <!-- <ion-item lines="none" *ngIf="viewless4">
+            <ion-textarea placeholder="Type something here" [(ngModel)]="other_remarks" [autoGrow]="true" maxlength="300">
+            </ion-textarea>
+          </ion-item> -->
+          <ion-row *ngIf="viewless4">
+            <ion-col class="style-of-text-area">
+              <ion-textarea placeholder="Type something here" [(ngModel)]="other_remarks" [autoGrow]="true" maxlength="300">
+              </ion-textarea>
+            </ion-col>
+        </ion-row>
+    
+        </div>
+
+    
+      </ion-grid>
+    </div>
+
+
+  <!-- <div *ngFor="let value of values; let i = index"> -->
+  <!-- <input type="text" [(ngModel)]="value.value" #name="ngModel" name="value{{i}}"> -->
+  <!-- <ion-row class="header-row">
+      <ion-col>
+        <ion-text class="headingName">Other (Tap to Enter)</ion-text>
+      </ion-col>
+      <ion-col>
+        <ion-text class="headingName">Valid Upto</ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text class="other">
+          upload <ion-icon name="share-outline" (click)="uploadOptions()"></ion-icon>
+        </ion-text>
+      </ion-col>
+      <ion-col>
+
+        <ion-input type="text" [(ngModel)]="value.value" placeholder="dd-mm-yyyy"></ion-input>
+
+      </ion-col>
+
+
+      <ion-icon name="trash" class="trashIcon" (click)="removevalue(i)">Remove</ion-icon>
+
+
+    </ion-row>
+
+  </div> -->
+
+  <!-- <ion-button (click)="viewMoreDetails()" style="bottom: 15px !important;"> Next </ion-button> -->
+
+  <ion-button expand="block" (click)="addNewVehicleButton()"> Save </ion-button>
+
+  <!-- </ion-content> -->
+  <!-- </ion-card> -->
+
+</ion-content>

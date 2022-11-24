@@ -1,0 +1,151 @@
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { IonModal, ToastController } from '@ionic/angular';
+import { ApiService } from '../Providers/api.service';
+import { OverlayEventDetail } from '@ionic/core';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+  loginForm: FormGroup;
+  referalForm: FormGroup;
+  mobile_number: string;
+  @ViewChild(IonModal) modal: IonModal;
+  selectedValue: any;
+  fort_pwd_mobile_number: string;
+  register_mobile_number: any;
+  isModalOpen = false;
+  mobileNumber: boolean = false;
+  isSubmitted = false;
+  isreferalSubmitted = false;
+  constructor(
+    public router: Router,
+    public formBuilder: FormBuilder,
+    public service: ApiService,
+    private toastController: ToastController
+  ) {}
+  customCounterFormatter(inputLength: number, maxLength: number) {
+    return `${maxLength - inputLength} characters remaining`;
+  }
+
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      mobile_number: ['', Validators.required],
+    });
+    this.referalForm = this.formBuilder.group({
+      referal_code: ['', Validators.required],
+    });
+  }
+  get errorControl() {
+    return this.loginForm.controls;
+  }
+  get refererrorControl() {
+    return this.referalForm.controls;
+  }
+
+  doLogin() {
+    this.isSubmitted = true;
+
+    if (this.loginForm.invalid) {
+      // alert('please enter mobile numer');
+      console.log('Please provide all the required values!');
+      return false;
+    } else {
+      let temp = {
+        mobile_number: this.mobile_number,
+        user_role_name: 'USER',
+      };
+      this.service.loginService(temp).subscribe(
+        (resp: any) => {
+          console.log('register success', resp.cuser_id);
+
+          localStorage.setItem('response', JSON.stringify(resp));
+          if (resp.cuser_id) {
+            localStorage.setItem('userId', JSON.stringify(resp.cuser_id));
+          } else {
+            localStorage.setItem('userId', JSON.stringify(resp.result.user_id));
+          }
+
+          this.router.navigateByUrl('/otp');
+        },
+        (error) => {
+          console.error('Error Occured Here', error);
+        }
+      );
+    }
+  }
+
+  cancel() {
+    this.modal.dismiss(null, 'cancel');
+  }
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  onWillDismiss(event: Event) {
+    const ev = event as CustomEvent<OverlayEventDetail<string>>;
+    if (ev.detail.role === 'confirm') {
+      // this.message = `Hello, ${ev.detail.data}!`;
+    }
+  }
+
+  register() {
+    let body = {
+      mobile_number: this.register_mobile_number,
+      user_role_name: this.selectedValue,
+    };
+    this.service.registerService(body).subscribe(
+      async (resp: any) => {
+        console.log('resp', resp);
+
+        const toast = await this.toastController.create({
+          message: 'Hello World!',
+          duration: 1500,
+          position: 'bottom',
+        });
+        await toast.present();
+        this.isModalOpen = false;
+        // this.router.navigate(['/login']);
+      },
+      (error) => {
+        console.error('Error Occured Here', error);
+      }
+    );
+  }
+
+  forgotPwd() {
+    let body = {
+      mobile_number: this.fort_pwd_mobile_number,
+    };
+    this.service.forgotPwdService(body).subscribe(
+      (resp: any) => {
+        console.log(resp.result.OTP);
+
+        localStorage.setItem('otp_response', resp.result.OTP);
+        this.router.navigate(['/otp']);
+        this.cancel();
+      },
+      (error) => {
+        console.error('Error Occured Here', error);
+      }
+    );
+  }
+  validateNo(e): boolean {
+    const charCode = e.which ? e.which : e.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      console.log('false');
+      this.mobileNumber = true;
+      return false;
+    }
+    console.log('true');
+    this.mobileNumber = false;
+    return true;
+  }
+
+  referralCode() {
+    this.isreferalSubmitted = true;
+  }
+}

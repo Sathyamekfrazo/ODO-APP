@@ -1,0 +1,48 @@
+.ion-text-center {
+  font-size: 12px !important;
+  .header-row {
+    .headingName {
+      font-size: 16px;
+      font-weight: bold;
+      color: #141414;
+    }
+  }
+  .red {
+    font-size: 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 3px 14px;
+  }
+  .blue {
+    color: #0277bd;
+  }
+}
+ion-item {
+  border: 1px solid #7f7e7e;
+  border-radius: 15px;
+  margin: 20px 15px !important;
+}
+.containBlock {
+  margin-bottom: 10px;
+}
+.other {
+  font-size: 12x;
+  border: 1px solid #0277bd;
+  border-radius: 20px;
+  padding: 3px 24px;
+
+  position: relative;
+  top: 13px;
+  left: 10px;
+}
+ion-input {
+  border-bottom: 1px solid;
+}
+.trashIcon {
+  color: #630207;
+  position: relative;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}

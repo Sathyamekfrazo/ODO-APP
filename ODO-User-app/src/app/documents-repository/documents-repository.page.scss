@@ -1,0 +1,106 @@
+ion-item {
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    margin-bottom: 10px !important;
+  }
+  ion-button.button.button-solid.ion-activatable.ion-focusable.hydrated {
+    width: 150px;
+    height: 40px;
+    margin-top: 25px !important;
+    margin-bottom: 25px !important;
+    margin: 0 auto;
+    --background: #630207 !important;
+    display: block;
+    text-transform: inherit;
+  }
+  .ion-text-center {
+    font-size: 12px !important;
+    .header-row {
+      .headingName {
+        font-size: 16px;
+        font-weight: bold;
+        color: #141414;
+      }
+    }
+    .red {
+      font-size: 12px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 3px 14px;
+    }
+    .blue {
+      color: #0277bd;
+    }
+  }
+  ion-item {
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    margin: 20px 15px !important;
+  }
+  .containBlock {
+    margin-bottom: 10px;
+  }
+
+
+  .qty-selector {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: #ffb84f;
+    border-radius: 5px;
+    /* margin-top: 10px; */
+    height: 30px;
+
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    width: 90px;
+  }
+  .ion-text-center {
+    font-size: 12px !important;
+    .header-row {
+      .headingName {
+        font-size: 16px;
+        font-weight: bold;
+        color: #141414;
+      }
+    }
+    .red {
+      font-size: 12px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      padding: 3px 14px;
+    }
+    .blue {
+      color: #0277bd;
+    }
+  }
+  ion-item {
+    border: 1px solid #7f7e7e;
+    border-radius: 15px;
+    margin: 20px 15px !important;
+  }
+  .containBlock {
+    margin-bottom: 10px;
+  }
+  .other {
+    font-size: 12x;
+    border: 1px solid #0277bd;
+    border-radius: 20px;
+    padding: 3px 24px;
+  
+    position: relative;
+    top: 13px;
+    left: 10px;
+  }
+  // ion-input {
+  //   border-bottom: 1px solid;
+  // }
+  .trashIcon {
+    color: #630207;
+    position: relative;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }

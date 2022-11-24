@@ -1,0 +1,605 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <div class="header-aligns">
+      <ion-avatar><img src="../../assets/images/odo1.png
+        "></ion-avatar>
+      <span style="display: flex;"
+       *ngIf="DefaltSlide" ><a
+          style="color: white; font-weight: 600; text-decoration: none"
+          (click)="slideToViewDocs()"
+          >Skip1</a
+        >      <ion-icon
+        name="chevron-forward-outline"
+        style="color: white; font-size: 24px"
+      ></ion-icon></span
+      >
+      <span style="display: flex;"
+      *ngIf="two"><a
+        style="color: white; font-weight: 600; text-decoration: none"
+        (click)="slideToViewDocs()"
+        >Skip2</a
+      >      <ion-icon
+      name="chevron-forward-outline"
+      style="color: white; font-size: 24px"
+    ></ion-icon></span
+    >
+    <span style="display: flex;"
+    *ngIf="three"><a
+      style="color: white; font-weight: 600; text-decoration: none"
+      (click)="slideToViewDocs()"
+      >Skip3</a
+    >      <ion-icon
+    name="chevron-forward-outline"
+    style="color: white; font-size: 24px"
+  ></ion-icon></span
+  >
+  <span style="display: flex;"
+  *ngIf="fourth"><a
+    style="color: white; font-weight: 600; text-decoration: none"
+    (click)="slideToViewDocs()"
+    >Next</a
+  >      <ion-icon
+  name="chevron-forward-outline"
+  style="color: white; font-size: 24px"
+></ion-icon></span
+>
+
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <swiper #slides pager="false" [options]="sliderOptions" (ionSlideDidChange)="slidesChanged(slides)" (ionSlidesDidLoad)="slidesChanged(slides)" >
+    <ng-template swiperSlide >
+
+      <ion-card class="ion-padding" id="addVehicle">
+        <ion-card-header>
+          <ion-card-title>Add Vehicle</ion-card-title>
+          <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+        </ion-card-header>
+        <ion-item lines="none" class="ion-item">
+          <ion-input
+            maxlength="14"
+            [(ngModel)]="vehicle_number"
+            name="vehicle_number"
+            placeholder="Enter Vechile Number"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-item">
+          <ion-input
+            maxlength="14"
+            [(ngModel)]="vehicle_name"
+            name="vehicle_name"
+            placeholder="Enter Vehicle Name"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-item">
+          <ion-input
+            maxlength="14"
+            [(ngModel)]="refrence_name"
+            name="refrence_name"
+            placeholder="Enter reference Name"
+          >
+          </ion-input>
+        </ion-item>
+        <ion-item lines="none" class="ion-item">
+          <ion-select
+            placeholder="Select Category"
+            style="width: 100%"
+            (ionChange)="handleChange($event)"
+          >
+            <ion-select-option
+              *ngFor="let wheeler of vechileList;let i = index"
+              [value]="wheeler.id"
+            >
+              {{wheeler.category_name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card>
+      <div class="grid-documents">
+        <ion-grid class="ion-text-center">
+          <div class="containBlock">
+            <ion-row class="header-row">
+              <ion-col>
+                <ion-text class="headingName">Insurance</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Valid Upto</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Remarks</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text class="red">
+                  <label
+                    for="imageUpload"
+                    class="btn btn-primary btn-block btn-outlined"
+                    >upload</label
+                  >
+                  <input
+                    type="file"
+                    id="imageUpload"
+                    accept="image/*"
+                    hidden
+                    (change)="imageChange($event)"
+                  />
+                  <ion-icon name="share-outline"></ion-icon>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="yellow">
+                  <ion-input
+                    type="date"
+                    placeholder="Select Date"
+                    [(ngModel)]="insurance_date"
+                  >
+                  </ion-input>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <button (click)="AddtextBox()" style="float: right">
+                  {{viewmore?"+":"-"}}
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="viewless">
+              <ion-col class="style-of-text-area">
+                <ion-textarea
+                  placeholder="Type something here"
+                  [(ngModel)]="insurance_remarks"
+                  [autoGrow]="true"
+                  maxlength="300"
+                >
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="containBlock">
+            <ion-row class="header-row">
+              <ion-col>
+                <ion-text class="headingName">RC</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Valid Upto</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Remarks</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text class="red">
+                  <label
+                    for="rcimageUpload"
+                    class="btn btn-primary btn-block btn-outlined"
+                    >upload</label
+                  >
+                  <input
+                    type="file"
+                    id="rcimageUpload"
+                    accept="image/*"
+                    hidden
+                    (change)="rcImageChange($event)"
+                  />
+                  <ion-icon name="share-outline"></ion-icon>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="yellow">
+                  <ion-input
+                    type="date"
+                    placeholder="Select Date"
+                    [(ngModel)]="rc_date"
+                  >
+                  </ion-input>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <button (click)="AddtextBox1()" style="float: right">
+                  {{viewmore1?"+":"-"}}
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="viewless1">
+              <ion-col class="style-of-text-area">
+                <ion-textarea
+                  placeholder="Type something here"
+                  [(ngModel)]="rc_remarks"
+                  [autoGrow]="true"
+                  maxlength="300"
+                >
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="containBlock">
+            <ion-row class="header-row">
+              <ion-col>
+                <ion-text class="headingName">Permit</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Valid Upto</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Remarks</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text class="red">
+                  <label
+                    for="permitimageUpload"
+                    class="btn btn-primary btn-block btn-outlined"
+                    >upload</label
+                  >
+                  <input
+                    type="file"
+                    id="permitimageUpload"
+                    accept="image/*"
+                    hidden
+                    (change)="permitImageChange($event)"
+                  />
+                  <ion-icon name="share-outline"></ion-icon>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="yellow">
+                  <ion-input
+                    type="date"
+                    placeholder="Select Date"
+                    [(ngModel)]="permit_date"
+                  >
+                  </ion-input>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <button (click)="AddtextBox2()" style="float: right">
+                  {{viewmore2?"+":"-"}}
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="viewless2">
+              <ion-col class="style-of-text-area">
+                <ion-textarea
+                  placeholder="Type something here"
+                  [(ngModel)]="permit_remarks"
+                  [autoGrow]="true"
+                  maxlength="300"
+                >
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="containBlock">
+            <ion-row class="header-row">
+              <ion-col>
+                <ion-text class="headingName">Emission</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Valid Upto</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Remarks</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text class="red">
+                  <label
+                    for="emissionimageUpload"
+                    class="btn btn-primary btn-block btn-outlined"
+                    >upload</label
+                  >
+                  <input
+                    type="file"
+                    id="emissionimageUpload"
+                    accept="image/*"
+                    hidden
+                    (change)="emissionImageChange($event)"
+                  />
+                  <ion-icon name="share-outline"></ion-icon>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="yellow">
+                  <ion-input
+                    type="date"
+                    placeholder="Select Date"
+                    [(ngModel)]="emission_date"
+                  >
+                  </ion-input>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <button (click)="AddtextBox3()" style="float: right">
+                  <!-- <ion-icon name="add"></ion-icon> -->
+                  {{viewmore3?"+":"-"}}
+                </button>
+              </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="viewless3">
+              <ion-col class="style-of-text-area">
+                <ion-textarea
+                  placeholder="Type something here"
+                  [(ngModel)]="emission_remarks"
+                  [autoGrow]="true"
+                  maxlength="300"
+                >
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="containBlock">
+            <ion-row class="header-row">
+              <ion-col>
+                <ion-input
+                  type="text"
+                  placeholder="other"
+                  class="headingName"
+                ></ion-input>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Valid Upto</ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="headingName">Remarks</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row style="display: flex; align-items: center">
+              <ion-col>
+                <ion-text class="red">
+                  <label
+                    for="otherimageUpload"
+                    class="btn btn-primary btn-block btn-outlined"
+                    >upload</label
+                  >
+                  <input
+                    type="file"
+                    id="otherimageUpload"
+                    accept="image/*"
+                    hidden
+                    (change)="otherImageChange($event)"
+                  />
+                  <ion-icon name="share-outline"></ion-icon>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <ion-text class="yellow">
+                  <ion-input
+                    type="date"
+                    placeholder="Select Date"
+                    [(ngModel)]="other_date"
+                  >
+                  </ion-input>
+                </ion-text>
+              </ion-col>
+              <ion-col>
+                <button (click)="AddtextBox4()" style="float: right">
+                  {{viewmore4?"+":"-"}}
+                </button>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="viewless4">
+              <ion-col class="style-of-text-area">
+                <ion-textarea
+                  placeholder="Type something here"
+                  [(ngModel)]="other_remarks"
+                  [autoGrow]="true"
+                  maxlength="300"
+                >
+                </ion-textarea>
+              </ion-col>
+            </ion-row>
+          </div>
+        </ion-grid>
+      </div>
+      <!-- <ion-button expand="block" (click)="slideToViewDocs()"> Next </ion-button> -->
+    </ng-template>
+
+    <ng-template swiperSlide >
+      <div id="vehicleDocuments" *ngIf="rescame">
+        <h5 class="card-title">Vehicle Documents</h5>
+        <div class="card" >
+          <img
+            src="../../assets/images/blur car.webp"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="../../assets/images/driving.jfif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="../../assets/images/driving.jfif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+
+        <!-- <ion-button
+          expand="block"
+          (click)="slideToViewDocs()"
+          style="margin-top: 30px; padding: 0px 10px 0 10px"
+          *ngIf="rescame"
+        >
+          Next
+        </ion-button> -->
+      </div>
+
+      <!-- </ion-content> -->
+    </ng-template>
+    <div class="spin" *ngIf="spinner">
+      <ion-spinner name="bubbles"></ion-spinner>
+    </div>
+    <ng-template swiperSlide>
+      <!-- <ion-header>
+        <ion-toolbar color="primary">
+          <div class="header-aligns">
+            <ion-icon
+              (click)="slideToPrev()"
+              name="arrow-back-outline"
+              style="color: white; font-size: 30px"
+            ></ion-icon>
+            <ion-title>Add Document</ion-title>
+            <span
+              ><a
+                style="color: white; font-weight: 600; text-decoration: none"
+                (click)="slideToViewDocs()"
+                >Skip</a
+              ></span
+            ><ion-icon
+              name="chevron-forward-outline"
+              style="color: white; font-size: 24px"
+            ></ion-icon>
+          </div>
+        </ion-toolbar>
+      </ion-header> -->
+      <div id="addDocument">
+        
+        <div class="card">
+          <h5 class="card-title">Add Document</h5>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <select class="form-select" aria-label="Default select example">
+                  <option selected>Select Doc</option>
+                  <option value="1">Insurance</option>
+                  <option value="2">Adhar</option>
+                  <option value="3">Pan</option>
+                </select>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-light btn-sm">Upload</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <ion-item counter="true" class="ion-item-add">
+                  <!-- <ion-label position="floating">Enter Phone Number</ion-label> -->
+                  <ion-input
+                    placeholder="Full Name"
+                    style="background-color: white; color: black"
+                  ></ion-input>
+                  <!-- <ion-note slot="helper" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Enter Your 10 Digit mobile number</ion-note> -->
+                </ion-item>
+              </div>
+              <div class="col">
+                <ion-item counter="true" class="ion-item-add">
+                  <!-- <ion-label position="floating">Enter Phone Number</ion-label> -->
+                  <ion-input
+                    placeholder="Full Name"
+                    style="background-color: white; color: black"
+                  ></ion-input>
+                  <!-- <ion-note slot="helper" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Enter Your 10 Digit mobile number</ion-note> -->
+                </ion-item>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
+    <ng-template swiperSlide>
+      <!-- <ion-header>
+        <ion-toolbar color="primary">
+          <div class="header-aligns">
+            <ion-icon
+              (click)="slideToPrev()"
+              name="arrow-back-outline"
+              style="color: white; font-size: 30px"
+            ></ion-icon>
+            <ion-title>View Document</ion-title>
+            <span
+              ><a
+                style="color: white; font-weight: 600; text-decoration: none"
+                (click)="slideToViewDocs()"
+                >Continue</a
+              ></span
+            >
+            <ion-icon
+              name="chevron-forward-outline"
+              style="color: white; font-size: 24px"
+            ></ion-icon>
+          </div>
+        </ion-toolbar>
+      </ion-header> -->
+
+      <div id="viewDocument">
+        <h5 class="card-title">View Documents</h5>
+        <div class="card">
+          <img
+            src="../../assets/images/blur car.webp"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="../../assets/images/driving.jfif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+        <div class="card">
+          <img
+            src="../../assets/images/driving.jfif"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <p class="card-text">Due Date : 12/23/23</p>
+            <a class="btn btn-primary">Preview</a>
+          </div>
+        </div>
+        <!-- <div class="spin" *ngIf="spinner">
+          <ion-spinner name="bubbles"></ion-spinner>
+        </div> -->
+        <!-- <ion-button expand="block" routerLink="/home"> Next </ion-button> -->
+      </div>
+    </ng-template>
+  </swiper>
+</ion-content>
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button expand="block"  *ngIf="DefaltSlide"> Next </ion-button>
+    <ion-button expand="block"  *ngIf="firstSlide"> Next1 </ion-button>
+    <ion-button expand="block"  *ngIf="secondSlide"> Next2 </ion-button>
+    <ion-button expand="block" *ngIf="thridSlide"> Continue </ion-button>
+  </ion-toolbar>
+</ion-footer>

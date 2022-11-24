@@ -1,0 +1,7 @@
+{
+  "name": "ODO-User-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
